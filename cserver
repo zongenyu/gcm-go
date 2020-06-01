@@ -1,0 +1,11 @@
+#!/bin/sh
+
+# start syslog
+sed -i 's/$ModLoad imklog/#$ModLoad imklog/' /etc/rsyslog.conf
+sed -i 's/$KLogPermitNonKernelFacility on/#$KLogPermitNonKernelFacility on/' /etc/rsyslog.conf
+/usr/sbin/rsyslogd
+
+# run GCM-GO
+sh -c "./gcm-go; exec bash"
+
+exit
